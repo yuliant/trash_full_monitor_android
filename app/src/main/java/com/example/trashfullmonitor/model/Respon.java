@@ -2,6 +2,9 @@ package com.example.trashfullmonitor.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Respon {
     @SerializedName("status")
     private boolean status;
@@ -20,12 +23,14 @@ public class Respon {
     @SerializedName("data")
     private UserRespon userRespon;
 
-    public void setUserRespon(UserRespon userRespon) {
-        this.userRespon = userRespon;
-    }
-
     public UserRespon getUserRespon() {
         return userRespon;
     }
 
+    @SerializedName("daftar_lokasi")
+    private ArrayList<DaftarLokasiResponse> daftarLokasiResponseList;
+
+    public ArrayList<DaftarLokasiResponse> getDaftarLokasiResponseList() {
+        return daftarLokasiResponseList;
+    }
 }

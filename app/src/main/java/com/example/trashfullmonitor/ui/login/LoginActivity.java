@@ -19,6 +19,8 @@ import com.example.trashfullmonitor.api.ApiClient;
 import com.example.trashfullmonitor.api.AuthApi;
 import com.example.trashfullmonitor.model.Respon;
 import com.example.trashfullmonitor.model.UserRespon;
+import com.example.trashfullmonitor.ui.home.HomeActivity;
+import com.example.trashfullmonitor.ui.home.NewHomeActivity;
 import com.example.trashfullmonitor.util.session.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         SessionManager sessionManager = new SessionManager(this);
         if (sessionManager.isLoggedIn()){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), NewHomeActivity.class));
             finish();
         }
 
@@ -104,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     sessionManager.createLoginSesion(data);
                     Toast.makeText(LoginActivity.this, "Selamat datang "+ response.body().getUserRespon().getNAMAPENGGUNA(), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, NewHomeActivity.class);
                     startActivity(intent);
                     finish();
 
