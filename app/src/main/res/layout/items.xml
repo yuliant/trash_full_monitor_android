@@ -14,11 +14,15 @@
         android:layout_height="2dp"
         android:background="@color/blue"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_margin="@dimen/appbar_padding"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
@@ -33,14 +37,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="16sp"
+                android:layout_marginBottom="10dp"
                 tools:text="Nama Tempat Sampah"/>
-
-            <TextView
-                android:id="@+id/tv_berat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                tools:text="Berat"/>
 
             <TextView
                 android:id="@+id/tv_lokasi"
@@ -50,5 +48,22 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_berat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="90"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:gravity="center_horizontal|center_vertical"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

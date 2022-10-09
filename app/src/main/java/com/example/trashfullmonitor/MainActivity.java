@@ -4,10 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.trashfullmonitor.databinding.ActivityMainBinding;
 import com.example.trashfullmonitor.ui.login.LoginActivity;
 import com.example.trashfullmonitor.util.session.SessionManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -17,13 +16,9 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.trashfullmonitor.ui.main.SectionsPagerAdapter;
-import com.example.trashfullmonitor.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.logout, menu);
         return true;
     }
 

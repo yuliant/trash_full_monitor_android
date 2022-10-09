@@ -2,6 +2,7 @@ package com.example.trashfullmonitor.ui.daftarlokasi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.trashfullmonitor.R;
 import com.example.trashfullmonitor.model.DaftarLokasiResponse;
 import com.example.trashfullmonitor.ui.home.HomeActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapter.DaftarLokasiHolder>{
@@ -38,13 +40,20 @@ public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapte
     @Override
     public void onBindViewHolder(@NonNull DaftarLokasiAdapter.DaftarLokasiHolder holder, int position) {
         final DaftarLokasiResponse daftarLokasiResponse = daftarLokasiResponseList.get(position);
-//        final
+        final String nama_tempah_sampah = daftarLokasiResponse.getNAMATEMPATSAMPAH();
+        final String berat = daftarLokasiResponse.getBERAT();
+        final String lokasi = daftarLokasiResponse.getLOKASI();
+        final String id_tempat_sampah = daftarLokasiResponse.getIDTEMPATSAMPAH();
 
-
-        holder.tvNamaTempahSampah.setText(daftarLokasiResponse.getNAMATEMPATSAMPAH());
-        holder.tvBerat.setText(daftarLokasiResponse.getBERAT());
-        holder.tvLokasi.setText(daftarLokasiResponse.getLOKASI());
-        holder.tvIdDaftarLokasi.setText(daftarLokasiResponse.getIDTEMPATSAMPAH());
+        holder.tvNamaTempahSampah.setText(nama_tempah_sampah);
+        if (Integer.parseInt(berat) < 80){
+            holder.tvBerat.setTextColor(Color.GREEN);
+        }else {
+            holder.tvBerat.setTextColor(Color.RED);
+        }
+        holder.tvBerat.setText(berat);
+        holder.tvLokasi.setText(lokasi);
+        holder.tvIdDaftarLokasi.setText(id_tempat_sampah);
 
         holder.item.setOnClickListener(view -> {
 
@@ -76,5 +85,11 @@ public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapte
             tvIdDaftarLokasi = itemView.findViewById(R.id.tv_id_daftar_lokasi);
             item = itemView.findViewById(R.id.item);
         }
+    }
+
+    public void setFilter(List<DaftarLokasiResponse> filterList){
+        daftarLokasiResponseList = new ArrayList<>();
+        daftarLokasiResponseList.addAll(filterList);
+        notifyDataSetChanged();
     }
 }

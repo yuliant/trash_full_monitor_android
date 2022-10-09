@@ -8,9 +8,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.trashfullmonitor.BuildConfig;
@@ -121,5 +126,40 @@ public class DaftarLokasiActivity extends AppCompatActivity {
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY));
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search, menu);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView  = new SearchView(DaftarLokasiActivity.this);
+        searchView.setQueryHint("Cari Sesuatu....");
+        searchView.setBackgroundColor(Color.WHITE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                newText = newText.toLowerCase();
+                ArrayList<DaftarLokasiResponse> dataFilter = new ArrayList<>();
+                for(DaftarLokasiResponse data : daftarLokasiResponses){
+                    String nama = data.getNAMATEMPATSAMPAH().toLowerCase();
+                    String lokasi = data.getLOKASI().toLowerCase();
+                    String berat = data.getBERAT().toLowerCase();
+                    if(nama.contains(newText)
+                            || lokasi.contains(newText)
+                            || berat.contains(newText)){
+                        dataFilter.add(data);
+                    }
+                }
+                daftarLokasiAdapter.setFilter(dataFilter);
+                return false;
+            }
+        });
+        searchItem.setActionView(searchView);
+        return true;
     }
 }
