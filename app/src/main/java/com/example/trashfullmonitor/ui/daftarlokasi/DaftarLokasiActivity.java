@@ -1,5 +1,6 @@
 package com.example.trashfullmonitor.ui.daftarlokasi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +14,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -93,8 +93,9 @@ public class DaftarLokasiActivity extends AppCompatActivity {
         daftarLokasiResponse.enqueue(new Callback<Respon>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onResponse(Call<Respon> call, Response<Respon> response) {
+            public void onResponse(@NonNull Call<Respon> call, @NonNull Response<Respon> response) {
                 pbGetData.setVisibility(View.INVISIBLE);
+                assert response.body() != null;
                 if (response.body().isStatus()){
                     daftarLokasiResponses = response.body().getDaftarLokasiResponseList();
 
@@ -108,7 +109,7 @@ public class DaftarLokasiActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Respon> call, Throwable t) {
+            public void onFailure(@NonNull Call<Respon> call, @NonNull Throwable t) {
                 pbGetData.setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
@@ -132,7 +133,7 @@ public class DaftarLokasiActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
         MenuItem searchItem = menu.findItem(R.id.search);
-        SearchView searchView  = new SearchView(DaftarLokasiActivity.this);
+        SearchView searchView  = new SearchView(this);
         searchView.setQueryHint("Cari Sesuatu....");
         searchView.setBackgroundColor(Color.WHITE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

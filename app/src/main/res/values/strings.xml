@@ -3,7 +3,9 @@
     <string name="tab_text_1">Daftar Lokasi</string>
     <string name="tab_text_2">Histori</string>
 
+    <string name="histori">Histori Tugas</string>
     <string name="daftar_lokasi">Daftar Lokasi</string>
+    <string name="mobil_sampah">Mobil Sampah</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -15,4 +15,22 @@ public interface OperationalApi {
             @Field("API-KEY") String api_key
     );
 
+    @FormUrlEncoded
+    @POST("trash/mobile/mobil_sampah")
+    Call<Respon> mobilResponse(
+            @Field("API-KEY") String api_key
+    );
+
+    @FormUrlEncoded
+    @POST("trash/mobile/histori_tugas")
+    Call<Respon> historiTugas(
+            @Field("API-KEY") String api_key,
+            @Field("id_pengguna") String id_pengguna
+    );
+
+    @FormUrlEncoded
+    @POST("trash/mobile/mobil_sampah_ready")
+    Call<Respon> mobilReadyResponse(
+            @Field("API-KEY") String api_key
+    );
 }

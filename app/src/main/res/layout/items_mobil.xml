@@ -17,7 +17,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_margin="@dimen/appbar_padding"
@@ -27,19 +28,19 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_id_daftar_lokasi"
+                android:id="@+id/tv_id_mobil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/tv_nama_tempah_sampah"
+                android:id="@+id/tv_merek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginBottom="10dp"
-                tools:text="Nama Tempat Sampah"/>
+                tools:text="Merek (No Plat)"/>
 
             <TextView
                 android:id="@+id/tv_lokasi"
@@ -55,12 +56,12 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_berat"
+                android:id="@+id/tv_status"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:text="90"
+                tools:text="Dipakai"
                 android:textStyle="bold"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:gravity="center_horizontal|center_vertical"/>
 
         </LinearLayout>

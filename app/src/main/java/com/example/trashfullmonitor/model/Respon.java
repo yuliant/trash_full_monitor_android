@@ -33,4 +33,18 @@ public class Respon {
     public ArrayList<DaftarLokasiResponse> getDaftarLokasiResponseList() {
         return daftarLokasiResponseList;
     }
+
+    @SerializedName("mobil_sampah")
+    private ArrayList<MobilSampahResponse> mobilSampahResponses;
+
+    public ArrayList<MobilSampahResponse> getMobilSampahResponses() {
+        return mobilSampahResponses;
+    }
+
+    @SerializedName("histori")
+    private ArrayList<HistoriResponse> historiResponses;
+
+    public ArrayList<HistoriResponse> getHistoriResponses() {
+        return historiResponses;
+    }
 }

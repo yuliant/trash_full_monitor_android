@@ -18,6 +18,7 @@ import com.example.trashfullmonitor.ui.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapter.DaftarLokasiHolder>{
 
@@ -44,14 +45,22 @@ public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapte
         final String berat = daftarLokasiResponse.getBERAT();
         final String lokasi = daftarLokasiResponse.getLOKASI();
         final String id_tempat_sampah = daftarLokasiResponse.getIDTEMPATSAMPAH();
+        final String status_jemput = daftarLokasiResponse.getSTATUSJEMPUT();
 
         holder.tvNamaTempahSampah.setText(nama_tempah_sampah);
-        if (Integer.parseInt(berat) < 80){
-            holder.tvBerat.setTextColor(Color.GREEN);
-        }else {
+
+        if (Objects.equals(status_jemput, "1")){
+            holder.tvBerat.setText("X");
             holder.tvBerat.setTextColor(Color.RED);
+        }else {
+            holder.tvBerat.setText(berat);
+            if (Integer.parseInt(berat) < 80){
+                holder.tvBerat.setTextColor(Color.GREEN);
+            }else {
+                holder.tvBerat.setTextColor(Color.RED);
+            }
         }
-        holder.tvBerat.setText(berat);
+
         holder.tvLokasi.setText(lokasi);
         holder.tvIdDaftarLokasi.setText(id_tempat_sampah);
 

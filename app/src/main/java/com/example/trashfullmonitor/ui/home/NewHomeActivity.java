@@ -3,7 +3,9 @@ package com.example.trashfullmonitor.ui.home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +28,7 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
     SessionManager sessionManager;
     String id, nama, email, api_key = BuildConfig.API_KEY;
     TextView tvNama, tvEmail;
-    LinearLayout ll_daftar_lokasi;
+    CardView cv_daftar_lokasi, cv_histori, cv_mobil;
 
     private void init(){
         id = sessionManager.getUserDetail().get(SessionManager.ID_PENGGUNA);
@@ -35,12 +37,17 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
 
         tvNama = findViewById(R.id.tv_nama);
         tvEmail = findViewById(R.id.tv_email);
-        ll_daftar_lokasi = findViewById(R.id.ll_daftar_lokasi);
+        cv_mobil = findViewById(R.id.cv_mobil);
+        cv_daftar_lokasi = findViewById(R.id.cv_daftar_lokasi);
+        cv_histori = findViewById(R.id.cv_histori);
+
 
         tvNama.setText(nama);
         tvEmail.setText(email);
 
-        ll_daftar_lokasi.setOnClickListener(this);
+        cv_daftar_lokasi.setOnClickListener(this);
+        cv_histori.setOnClickListener(this);
+        cv_mobil.setOnClickListener(this);
     }
 
     @Override
@@ -56,21 +63,21 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
         init();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            case R.id.ll_daftar_lokasi:
+            case R.id.cv_daftar_lokasi:
                 Intent daftarlokasi = new Intent(this, DaftarLokasiActivity.class);
                 startActivity(daftarlokasi);
                 break;
 
-            case R.id.ll_histori:
+            case R.id.cv_histori:
                 Intent histori = new Intent(this, HistoriActivity.class);
                 startActivity(histori);
                 break;
 
-            case R.id.ll_mobil:
+            case R.id.cv_mobil:
                 Intent mobil = new Intent(this, MobilActivity.class);
                 startActivity(mobil);
                 break;
