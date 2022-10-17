@@ -2,6 +2,7 @@ package com.example.trashfullmonitor.ui.mobil;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trashfullmonitor.R;
 import com.example.trashfullmonitor.model.MobilSampahResponse;
+import com.example.trashfullmonitor.ui.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,16 @@ public class MobilAdapter extends RecyclerView.Adapter<MobilAdapter.MobilHolder>
         }
         holder.tvLokasi.setText(lokasi);
         holder.tvIdMobil.setText(id_mobil);
+
+        holder.item.setOnClickListener(view -> {
+            Intent KirimData = new Intent(_context, DetailMobilActivity.class);
+            KirimData.putExtra("ID_MOBIL_SAMPAH", id_mobil);
+            KirimData.putExtra("MEREK", merek);
+            KirimData.putExtra("NO_PLAT", no_plat);
+            KirimData.putExtra("STATUS", status);
+            KirimData.putExtra("LOKASI", lokasi);
+            _context.startActivity(KirimData);
+        });
     }
 
     @Override

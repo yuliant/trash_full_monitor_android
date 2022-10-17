@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.mobil.DetailMobilActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            app:titleTextColor="@color/white"
+            app:theme="@style/ToolbarColoredBackArrow"
+            android:backgroundTint="@color/blue"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Merek"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_merek"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Nomor Plat"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_no_plat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Status Kendaraan"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_status"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Lokasi"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_lokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:gravity="left|top"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"
+                android:lines="5"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

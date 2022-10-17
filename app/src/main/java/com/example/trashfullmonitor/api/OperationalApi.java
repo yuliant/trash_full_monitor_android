@@ -27,10 +27,4 @@ public interface OperationalApi {
             @Field("API-KEY") String api_key,
             @Field("id_pengguna") String id_pengguna
     );
-
-    @FormUrlEncoded
-    @POST("trash/mobile/mobil_sampah_ready")
-    Call<Respon> mobilReadyResponse(
-            @Field("API-KEY") String api_key
-    );
 }

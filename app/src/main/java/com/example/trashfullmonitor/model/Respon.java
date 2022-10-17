@@ -47,4 +47,11 @@ public class Respon {
     public ArrayList<HistoriResponse> getHistoriResponses() {
         return historiResponses;
     }
+
+    @SerializedName("mobil_sampah_ready")
+    private ArrayList<MobilSampahReadyResponse> mobilSampahReadyResponses;
+
+    public ArrayList<MobilSampahReadyResponse> getMobilSampahReadyResponses() {
+        return mobilSampahReadyResponses;
+    }
 }
