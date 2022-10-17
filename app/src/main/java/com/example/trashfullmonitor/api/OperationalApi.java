@@ -27,4 +27,20 @@ public interface OperationalApi {
             @Field("API-KEY") String api_key,
             @Field("id_pengguna") String id_pengguna
     );
+
+    @FormUrlEncoded
+    @POST("trash/backend/menuju_lokasi")
+    Call<Respon> menujuLokasi(
+            @Field("API-KEY") String api_key,
+            @Field("id_tempat_sampah") String id_tempat_sampah,
+            @Field("id_mobil_sampah") String id_mobil_sampah,
+            @Field("id_pengguna") String id_pengguna
+    );
+
+    @FormUrlEncoded
+    @POST("trash/backend/angkut")
+    Call<Respon> angkut(
+            @Field("API-KEY") String api_key,
+            @Field("id_list_tugas") String id_list_tugas
+    );
 }

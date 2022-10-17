@@ -46,8 +46,8 @@ public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapte
         final String lokasi = daftarLokasiResponse.getLOKASI();
         final String id_tempat_sampah = daftarLokasiResponse.getIDTEMPATSAMPAH();
         final String status_jemput = daftarLokasiResponse.getSTATUSJEMPUT();
-
-        holder.tvNamaTempahSampah.setText(nama_tempah_sampah);
+        final String lng = daftarLokasiResponse.getLONGITUDE();
+        final String lat = daftarLokasiResponse.getLATITUDE();
 
         if (Objects.equals(status_jemput, "1")){
             holder.tvBerat.setText("X");
@@ -60,19 +60,19 @@ public class DaftarLokasiAdapter extends RecyclerView.Adapter<DaftarLokasiAdapte
                 holder.tvBerat.setTextColor(Color.RED);
             }
         }
-
+        holder.tvNamaTempahSampah.setText(nama_tempah_sampah);
         holder.tvLokasi.setText(lokasi);
         holder.tvIdDaftarLokasi.setText(id_tempat_sampah);
 
         holder.item.setOnClickListener(view -> {
-
-            Intent KirimData = new Intent(_context, HomeActivity.class);
-//            KirimData.putExtra("ID_TEMPAT_SAMPAH", idKunjungan);
-//            KirimData.putExtra("NAMA_KUNJUNGAN", namaKunjungan);
-//            KirimData.putExtra("ALAMAT_KUNJUNGAN", alamatKunjungan);
-//            KirimData.putExtra("TELP_KUNJUNGAN", telpKunjungan);
-//            KirimData.putExtra("KETERANGAN_KUNJUNGAN", keteranganKunjungan);
-//            KirimData.putExtra("FOTO_KUNJUNGAN", fotoKunjungan);
+            Intent KirimData = new Intent(_context, DaftarLokasiDetailActivity.class);
+            KirimData.putExtra("ID_TEMPAT_SAMPAH", id_tempat_sampah);
+            KirimData.putExtra("NAMA_TEMPAT_SAMPAH", nama_tempah_sampah);
+            KirimData.putExtra("LNG", lng);
+            KirimData.putExtra("LAT", lat);
+            KirimData.putExtra("LOKASI", lokasi);
+            KirimData.putExtra("BERAT", berat);
+            KirimData.putExtra("STATUS_JEMPUT", status_jemput);
             _context.startActivity(KirimData);
         });
 

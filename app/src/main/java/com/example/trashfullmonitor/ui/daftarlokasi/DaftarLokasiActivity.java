@@ -46,7 +46,6 @@ public class DaftarLokasiActivity extends AppCompatActivity {
 
     String id, api_key = BuildConfig.API_KEY;
 
-
     private void init(){
         id = sessionManager.getUserDetail().get(SessionManager.ID_PENGGUNA);
 
@@ -76,13 +75,14 @@ public class DaftarLokasiActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         init();
-        getData(api_key);
 
         swpGetData.setOnRefreshListener(() -> {
             swpGetData.setRefreshing(true);
             getData(api_key);
             swpGetData.setRefreshing(false);
         });
+
+        getData(api_key);
     }
 
     private void getData(String api_key){
@@ -95,6 +95,7 @@ public class DaftarLokasiActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Respon> call, @NonNull Response<Respon> response) {
                 pbGetData.setVisibility(View.INVISIBLE);
+                swpGetData.setRefreshing(false);
                 assert response.body() != null;
                 if (response.body().isStatus()){
                     daftarLokasiResponses = response.body().getDaftarLokasiResponseList();
@@ -111,6 +112,7 @@ public class DaftarLokasiActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<Respon> call, @NonNull Throwable t) {
                 pbGetData.setVisibility(View.INVISIBLE);
+                swpGetData.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });

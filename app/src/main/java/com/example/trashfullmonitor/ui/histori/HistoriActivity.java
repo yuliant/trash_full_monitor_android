@@ -77,13 +77,13 @@ public class HistoriActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         init();
-        getData(api_key, id);
-
         swpGetData.setOnRefreshListener(() -> {
             swpGetData.setRefreshing(true);
             getData(api_key, id);
             swpGetData.setRefreshing(false);
         });
+
+        getData(api_key, id);
     }
 
     private void getData(String api_key, String id_pengguna){

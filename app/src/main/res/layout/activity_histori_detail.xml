@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.mobil.DetailMobilActivity">
+    tools:context=".ui.histori.HistoriDetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,12 +35,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Merek"
+                android:text="Nama Tempat Sampah"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_merek"
+                android:id="@+id/et_nama_tempat_sampah"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/border_edittext"
@@ -55,12 +55,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Nomor Plat"
+                android:text="Koordinat"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_no_plat"
+                android:id="@+id/et_koordinat"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/border_edittext"
@@ -68,25 +68,6 @@
                 android:inputType="none"
                 android:padding="12dp"
                 android:textColor="@color/black"
-                tools:ignore="SpeakableTextPresentCheck"
-                android:layout_marginBottom="20dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Status Kendaraan"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/et_status"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_edittext"
-                android:editable="false"
-                android:inputType="none"
-                android:padding="12dp"
                 tools:ignore="SpeakableTextPresentCheck"
                 android:layout_marginBottom="20dp"/>
 
@@ -102,8 +83,8 @@
                 android:id="@+id/et_lokasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 android:background="@drawable/border_edittext"
+                android:inputType="textMultiLine"
                 android:padding="12dp"
                 android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck"
@@ -112,7 +93,85 @@
                 android:editable="false"
                 android:gravity="left|top"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Mobil"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_mobil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"
+                android:lines="2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Tanggal"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Status"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_status"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/border_edittext"
+                android:editable="false"
+                android:inputType="none"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btn_simpan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/button_green"
+                android:padding="10dp"
+                android:text="angkut"
+                android:textColor="@color/white" />
+
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbGetData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
 
     </RelativeLayout>
 

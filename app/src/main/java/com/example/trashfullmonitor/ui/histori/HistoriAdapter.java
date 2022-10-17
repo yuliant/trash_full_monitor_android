@@ -2,6 +2,7 @@ package com.example.trashfullmonitor.ui.histori;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trashfullmonitor.R;
-import com.example.trashfullmonitor.model.DaftarLokasiResponse;
 import com.example.trashfullmonitor.model.HistoriResponse;
-import com.example.trashfullmonitor.ui.daftarlokasi.DaftarLokasiAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +43,14 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriH
     public void onBindViewHolder(@NonNull HistoriAdapter.HistoriHolder holder, int position) {
         final HistoriResponse historiResponse = historiResponseList.get(position);
         final String nama_tempah_sampah = historiResponse.getNAMATEMPATSAMPAH();
+        final String lat = historiResponse.getLATITUDE();
+        final String lng = historiResponse.getLONGITUDE();
+        final String lokasi = historiResponse.getLOKASI();
+        final String id_histori = historiResponse.getIDLISTTUGAS();
         final String status_list = historiResponse.getSTATUSLIST();
         final String tanggal = historiResponse.getTANGGAL();
-        final String id_histori = historiResponse.getIDLISTTUGAS();
+        final String merek = historiResponse.getMEREK();
+        final String no_plat = historiResponse.getNOPLAT();
 
         if (Objects.equals(status_list, "angkut")){
             holder.tvStatusList.setText(status_list);
@@ -58,6 +62,24 @@ public class HistoriAdapter extends RecyclerView.Adapter<HistoriAdapter.HistoriH
         holder.tvNamaTempahSampah.setText(nama_tempah_sampah);
         holder.tvTanggal.setText(tanggal);
         holder.tvIdHistori.setText(id_histori);
+
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent KirimData = new Intent(_context, HistoriDetailActivity.class);
+                KirimData.putExtra("ID_HISTORI", id_histori);
+                KirimData.putExtra("NAMA_TEMPAT_SAMPAH", nama_tempah_sampah);
+                KirimData.putExtra("LNG", lng);
+                KirimData.putExtra("LAT", lat);
+                KirimData.putExtra("LOKASI", lokasi);
+                KirimData.putExtra("MEREK", merek);
+                KirimData.putExtra("NO_PLAT", no_plat);
+                KirimData.putExtra("STATUS_LIST", status_list);
+                KirimData.putExtra("TANGGAL", tanggal);
+                KirimData.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                _context.startActivity(KirimData);
+            }
+        });
     }
 
     @Override
