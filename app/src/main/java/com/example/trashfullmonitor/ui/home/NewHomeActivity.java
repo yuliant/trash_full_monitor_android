@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -13,15 +14,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trashfullmonitor.BuildConfig;
 import com.example.trashfullmonitor.R;
+import com.example.trashfullmonitor.api.ApiClient;
+import com.example.trashfullmonitor.api.OperationalApi;
+import com.example.trashfullmonitor.model.Respon;
 import com.example.trashfullmonitor.ui.daftarlokasi.DaftarLokasiActivity;
+import com.example.trashfullmonitor.ui.daftarlokasi.DaftarLokasiAdapter;
 import com.example.trashfullmonitor.ui.histori.HistoriActivity;
 import com.example.trashfullmonitor.ui.login.LoginActivity;
 import com.example.trashfullmonitor.ui.mobil.MobilActivity;
 import com.example.trashfullmonitor.util.session.SessionManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class NewHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +40,8 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
     String id, nama, email, api_key = BuildConfig.API_KEY;
     TextView tvNama, tvEmail;
     CardView cv_daftar_lokasi, cv_histori, cv_mobil;
+    ProgressBar pbGetData;
+    SwipeRefreshLayout swpGetData;
 
     private void init(){
         id = sessionManager.getUserDetail().get(SessionManager.ID_PENGGUNA);
@@ -40,7 +53,8 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
         cv_mobil = findViewById(R.id.cv_mobil);
         cv_daftar_lokasi = findViewById(R.id.cv_daftar_lokasi);
         cv_histori = findViewById(R.id.cv_histori);
-
+        pbGetData = findViewById(R.id.pbGetData);
+        swpGetData = findViewById(R.id.swpGetData);
 
         tvNama.setText(nama);
         tvEmail.setText(email);
@@ -61,6 +75,45 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         init();
+        swpGetData.setOnRefreshListener(() -> {
+            swpGetData.setRefreshing(true);
+            getData(api_key, id);
+            swpGetData.setRefreshing(false);
+        });
+
+        getData(api_key, id);
+    }
+
+    private void getData(String api_key, String id){
+        pbGetData.setVisibility(View.VISIBLE);
+        OperationalApi operationalApi = ApiClient.getData().create(OperationalApi.class);
+        Call<Respon> responCall = operationalApi.home(api_key, id);
+        responCall.enqueue(new Callback<Respon>() {
+            @Override
+            public void onResponse(@NonNull Call<Respon> call, @NonNull Response<Respon> response) {
+                pbGetData.setVisibility(View.INVISIBLE);
+                assert response.body() != null;
+                if (response.body().isStatus()){
+
+                    TextView tv_daftar_lokasi_jumlah = findViewById(R.id.tv_daftar_lokasi_jumlah);
+                    TextView tv_jumlah_histori = findViewById(R.id.tv_jumlah_histori);
+                    TextView tv_jumlah_mobil = findViewById(R.id.tv_jumlah_mobil);
+
+                    tv_daftar_lokasi_jumlah.setText(response.body().getHomeData().getDaftarLokasi());
+                    tv_jumlah_histori.setText(response.body().getHomeData().getHistori());
+                    tv_jumlah_mobil.setText(response.body().getHomeData().getMobil());
+
+                }else {
+                    Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Respon> call, @NonNull Throwable t) {
+                pbGetData.setVisibility(View.INVISIBLE);
+                Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @SuppressLint("NonConstantResourceId")

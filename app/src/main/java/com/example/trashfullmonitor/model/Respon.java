@@ -54,4 +54,11 @@ public class Respon {
     public ArrayList<MobilSampahReadyResponse> getMobilSampahReadyResponses() {
         return mobilSampahReadyResponses;
     }
+
+    @SerializedName("home")
+    private HomeResponse homeResponse;
+
+    public HomeResponse getHomeData() {
+        return homeResponse;
+    }
 }

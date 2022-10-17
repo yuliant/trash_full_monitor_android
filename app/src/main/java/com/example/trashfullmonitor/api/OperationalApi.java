@@ -10,6 +10,13 @@ import retrofit2.http.POST;
 public interface OperationalApi {
 
     @FormUrlEncoded
+    @POST("trash/mobile/home")
+    Call<Respon> home(
+            @Field("API-KEY") String api_key,
+            @Field("id_pengguna") String id_pengguna
+    );
+
+    @FormUrlEncoded
     @POST("trash/mobile/tempat_sampah")
     Call<Respon> daftarLokasiResponse(
             @Field("API-KEY") String api_key
