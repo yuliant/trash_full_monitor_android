@@ -9,17 +9,14 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trashfullmonitor.BuildConfig;
-import com.example.trashfullmonitor.MainActivity;
 import com.example.trashfullmonitor.R;
 import com.example.trashfullmonitor.api.ApiClient;
 import com.example.trashfullmonitor.api.AuthApi;
 import com.example.trashfullmonitor.model.Respon;
 import com.example.trashfullmonitor.model.UserRespon;
-import com.example.trashfullmonitor.ui.home.HomeActivity;
 import com.example.trashfullmonitor.ui.home.NewHomeActivity;
 import com.example.trashfullmonitor.util.session.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;

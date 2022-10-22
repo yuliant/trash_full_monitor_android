@@ -101,13 +101,11 @@ public class HistoriDetailActivity extends AppCompatActivity {
     }
 
     private void angkut(String api_key, String id_histori){
-        pbGetData.setVisibility(View.VISIBLE);
         OperationalApi operationalApi = ApiClient.getData().create(OperationalApi.class);
         Call<Respon> angkutRespon = operationalApi.angkut(api_key, id_histori);
         angkutRespon.enqueue(new Callback<Respon>() {
             @Override
             public void onResponse(Call<Respon> call, Response<Respon> response) {
-                pbGetData.setVisibility(View.INVISIBLE);
                 if (response.body().isStatus()){
                     Toast.makeText(HistoriDetailActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     finish();
@@ -119,7 +117,6 @@ public class HistoriDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Respon> call, Throwable t) {
-                pbGetData.setVisibility(View.INVISIBLE);
                 Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trashfullmonitor.R;
 import com.example.trashfullmonitor.model.MobilSampahResponse;
-import com.example.trashfullmonitor.ui.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
